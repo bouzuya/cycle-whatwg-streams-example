@@ -21,6 +21,11 @@
   "bugs": {
     "url": "https://github.com/bouzuya/cycle-whatwg-streams-example/issues"
   },
+  "dependencies": {
+    "@cycle/dom": "^13.0.0",
+    "whatwg-streams-b": "0.0.1",
+    "xstream": "^6.4.1"
+  },
   "devDependencies": {
     "@types/node": "6.0.39",
     "@types/power-assert": "0.0.28",
@@ -67,10 +72,5 @@
     "watch:test": "watch --wait 2 'npm test' '.tmp/es5/'",
     "watch:ts": "npm run 'build:ts' -- --watch"
   },
-  "typings": "lib/index.d.ts",
-  "dependencies": {
-    "@cycle/dom": "^13.0.0",
-    "whatwg-streams-b": "0.0.1",
-    "xstream": "^6.4.1"
-  }
+  "typings": "lib/index.d.ts"
 }
