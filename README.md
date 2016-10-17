@@ -13,6 +13,10 @@ Cycle.js with WHATWG Streams.
 
 [MIT](LICENSE)
 
+Some codes are based on [cyclejs/todomvc-cycle][] (MIT André Staltz).
+
+[cyclejs/todomvc-cycle]: https://github.com/cyclejs/todomvc-cycle
+
 ## Author
 
 [bouzuya][user] &lt;[m@bouzuya.net][email]&gt; ([http://bouzuya.net][url])
