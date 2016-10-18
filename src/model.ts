@@ -25,7 +25,8 @@ const model = (action$: ReadableStream): ReadableStream => {
   const clearInput$ = action11$
     .pipeThrough(filter((action) => action.type === 'clearInput'))
     .pipeThrough(map((_action) => (state: any) => state));
-  const insertTodo$ = action12$
+  const [action121$, action122$] = action12$.tee();
+  const insertTodo$ = action121$
     .pipeThrough(filter((action) => action.type === 'insertTodo'))
     .pipeThrough(map((action) => {
       const item = {
@@ -36,7 +37,18 @@ const model = (action$: ReadableStream): ReadableStream => {
         return Object.assign(state, { list: state.list.concat([item]) });
       };
     }));
-  const reducer$ = merge(clearInput$, insertTodo$);
+  const toggleAll$ = action122$
+    .pipeThrough(filter((action) => action.type === 'toggleAll'))
+    .pipeThrough(map((action) => {
+      return (state: any) => {
+        return Object.assign(state, {
+          list: state.list.map((item: any) => {
+            return Object.assign({}, item, { completed: action.payload });
+          })
+        });
+      };
+    }));
+  const reducer$ = merge(clearInput$, insertTodo$, toggleAll$);
   const state$ = reducer$
     .pipeThrough(fold((state, reducer) => reducer(state), state));
   return state$;

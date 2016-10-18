@@ -28,8 +28,16 @@ const insertTodo = ({ DOM }: So): ReadableStream => {
   return insertTodo$;
 };
 
+const toggleAll = ({ DOM }: So): ReadableStream => {
+  const keydown$: ReadableStream = DOM.select('.toggle-all').events('click');
+  const toggleAll$: ReadableStream = keydown$
+    .pipeThrough(map((event) => event.target.checked))
+    .pipeThrough(map((payload) => ({ type: 'toggleAll', payload })));
+  return toggleAll$;
+};
+
 const intent = (sources: So): ReadableStream => {
-  return merge(insertTodo(sources), clearInput(sources));
+  return merge(insertTodo(sources), clearInput(sources), toggleAll(sources));
 };
 
 export { intent };
