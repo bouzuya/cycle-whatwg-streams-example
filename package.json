@@ -27,7 +27,7 @@
     "todomvc-app-css": "2.0.6",
     "todomvc-common": "1.0.2",
     "whatwg-streams-b": "0.0.3",
-    "whatwg-streams-fns": "0.3.0",
+    "whatwg-streams-fns": "0.4.0",
     "xstream": "6.4.1"
   },
   "devDependencies": {
