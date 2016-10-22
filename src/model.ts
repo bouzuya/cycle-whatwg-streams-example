@@ -7,7 +7,8 @@ import { merge } from 'whatwg-streams-fns/merge';
 // for debug
 import { WritableStream } from 'whatwg-streams-b';
 
-const model = (action$: ReadableStream): ReadableStream => {
+// TODO: any
+const model = (action$: ReadableStream<any>): ReadableStream<any> => {
   const state = {
     filterFn: () => true,
     list: []
@@ -23,12 +24,12 @@ const model = (action$: ReadableStream): ReadableStream => {
 
   const [action11$, action12$] = action1$.tee();
   const clearInput$ = action11$
-    .pipeThrough(filter((action) => action.type === 'clearInput'))
+    .pipeThrough(filter((action: any) => action.type === 'clearInput'))
     .pipeThrough(map((_action) => (state: any) => state));
   const [action121$, action122$] = action12$.tee();
   const insertTodo$ = action121$
-    .pipeThrough(filter((action) => action.type === 'insertTodo'))
-    .pipeThrough(map((action) => {
+    .pipeThrough(filter((action: any) => action.type === 'insertTodo'))
+    .pipeThrough(map((action: any) => {
       const item = {
         title: action.payload,
         completed: false
@@ -38,8 +39,8 @@ const model = (action$: ReadableStream): ReadableStream => {
       };
     }));
   const toggleAll$ = action122$
-    .pipeThrough(filter((action) => action.type === 'toggleAll'))
-    .pipeThrough(map((action) => {
+    .pipeThrough(filter((action: any) => action.type === 'toggleAll'))
+    .pipeThrough(map((action: any) => {
       return (state: any) => {
         return Object.assign(state, {
           list: state.list.map((item: any) => {
@@ -50,7 +51,7 @@ const model = (action$: ReadableStream): ReadableStream => {
     }));
   const reducer$ = merge(clearInput$, insertTodo$, toggleAll$);
   const state$ = reducer$
-    .pipeThrough(fold((state, reducer) => reducer(state), state));
+    .pipeThrough(fold((state: any, reducer: any) => reducer(state), state));
   return state$;
 };
 
