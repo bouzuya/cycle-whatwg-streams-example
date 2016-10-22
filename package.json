@@ -24,6 +24,7 @@
   "dependencies": {
     "@cycle/base": "4.1.1",
     "@cycle/dom": "13.0.0",
+    "cycle-whatwg-streams-run": "0.1.0",
     "todomvc-app-css": "2.0.6",
     "todomvc-common": "1.0.2",
     "whatwg-streams-b": "0.1.0",
