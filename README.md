@@ -1,6 +1,6 @@
 # cycle-whatwg-streams-example
 
-Cycle.js with WHATWG Streams.
+Cycle.js with [WHATWG Streams](https://streams.spec.whatwg.org/).
 
 ## Badges
 
